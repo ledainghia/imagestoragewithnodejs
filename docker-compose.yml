@@ -8,8 +8,6 @@ services:
       - ./express-app/uploads:/app/uploads
     ports:
       - "3001:3001"
-    depends_on:
-      - github-sync
 
   fe:
     build:
@@ -18,12 +16,4 @@ services:
     volumes:
       - ./express-app/uploads:/usr/share/nginx/html
     ports:
-      - "80:80"
-    depends_on:
-      - express-app
-
-  github-sync:
-    image: alpine/git
-    volumes:
-      - ./express-app:/app
-    command: ["clone", "https://github.com/your-github-repo.git", "app"]
+      - "89:80"
