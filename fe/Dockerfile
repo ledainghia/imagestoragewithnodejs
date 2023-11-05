@@ -1,5 +1,5 @@
 # Sử dụng hình ảnh Node.js có sẵn để xây dựng ứng dụng React
-FROM node:14 as builder
+FROM node:latest as builder
 
 # Tạo thư mục làm việc
 WORKDIR /app

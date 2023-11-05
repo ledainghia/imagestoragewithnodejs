@@ -23,7 +23,11 @@ app.post("/upload", (req, res) => {
     : [req.files.file];
 
   uploadedFiles.forEach((file) => {
-    const uploadPath = path.join(uploadDir, file.name);
+    fileName = file.name.substring(file.name.lastIndexOf(" ") + 1);
+    if (file.name.lastIndexOf(" ") === -1) {
+      return res.status(400).send("No files were uploaded.");
+    }
+    const uploadPath = path.join(uploadDir, fileName);
 
     file.mv(uploadPath, (err) => {
       if (err) {
