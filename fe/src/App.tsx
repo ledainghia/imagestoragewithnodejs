@@ -17,7 +17,7 @@ function App() {
       }
 
       axios
-        .post("http://localhost:3001/upload", formData)
+        .post("http://34.101.208.146:3001/upload", formData)
         .then((response) => {
           // Xử lý phản hồi từ server (ví dụ: hiển thị thông báo)
           console.log(response);
@@ -31,7 +31,7 @@ function App() {
 
   const exportToExcel = () => {
     axios
-      .get("http://localhost:3001/exportToExcel", {
+      .get("http://34.101.208.146:3001/exportToExcel", {
         responseType: "arraybuffer",
       })
       .then((response) => {
