@@ -8,8 +8,10 @@ services:
       - ./express-app/uploads:/app/uploads
     ports:
       - "3001:3001"
+    depends_on:
+      - source-downloader
 
-  fe:
+  share-nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -17,3 +19,19 @@ services:
       - ./express-app/uploads:/usr/share/nginx/html
     ports:
       - "89:80"
+    depends_on:
+      - source-downloader
+  fe:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    ports:
+      - "85:80"
+    depends_on:
+      - source-downloader
+
+  source-downloader:
+    image: alpine/git
+    volumes:
+      - ./express-app:/app
+    command: git clone https://github.com/ledainghia/imagestoragewithnodejs.git /app
